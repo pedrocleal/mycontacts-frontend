@@ -4,6 +4,25 @@ export const Container = styled.div`
   margin-top: 32px;
 `;
 
+export const InputSearchContainer = styled.div`
+  width: 100%;
+
+  input {
+    width: 100%;
+    height: 50px;
+    border-radius: 25px;
+    background: #fff;
+    border: none;
+    outline: none;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.04);
+    padding: 0 16px;
+
+    &::placeholder {
+      color: #bcbcbc;
+    }
+  }
+`;
+
 export const Header = styled.header`
   display: flex;
   align-items: center;
@@ -11,7 +30,7 @@ export const Header = styled.header`
 
   strong {
     font-size: 24px;
-    color: #222;
+    color: ${({ theme }) => theme.colors.gray[900]};
   }
 
   a {
@@ -66,8 +85,36 @@ export const Card = styled.div`
       align-items: center;
 
       small {
-        background: ${({ theme }) => theme.colors.primary.lighter}
+        text-transform: uppercase;
+        font-weight: bold;
+        padding: 4px;
+        background: ${({ theme }) => theme.colors.primary.lighter};
+        color: ${({ theme }) => theme.colors.primary.main};
+        margin-left: 8px;
+        border-radius: 4px;
       }
     }
+
+    span {
+      display: block;
+      margin-top: 4px;
+      color: ${({ theme }) => theme.colors.gray[200]};
+    }
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+
+    button {
+      background: transparent;
+      border: none;
+      margin-left: 8px;
+      margin-top: -1px;
+    }
+  }
+
+  & + & {
+    margin-top: 16px;
   }
 `;
