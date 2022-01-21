@@ -9,7 +9,6 @@ export default styled.select`
   font-size: 16px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.04);
   border-radius: 4px;
-  margin-bottom: 16px;
 
   &:focus {
     border-color: ${({ theme }) => theme.colors.primary.main}
