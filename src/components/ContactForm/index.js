@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { Form } from './styles';
+import { Form, ButtonContainer } from './styles';
 
 import Input from '../Input';
 import Select from '../Select';
@@ -27,8 +27,9 @@ export default function ContactForm({ btnLabel }) {
           <option value="3">LinkedIm</option>
         </Select>
       </FormGroup>
-
-      <Button type="submit">{btnLabel}</Button>
+      <ButtonContainer>
+        <Button type="submit">{btnLabel}</Button>
+      </ButtonContainer>
     </Form>
   );
 }

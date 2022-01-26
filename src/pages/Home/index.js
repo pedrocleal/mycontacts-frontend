@@ -7,6 +7,7 @@ import {
 import trash from '../../assets/images/icons/trash.svg';
 import arrow from '../../assets/images/icons/arrow.svg';
 import edit from '../../assets/images/icons/edit.svg';
+import Modal from '../../components/Modal';
 
 export default function Home() {
   return (
@@ -14,6 +15,8 @@ export default function Home() {
       <InputSearchContainer>
         <input type="text" placeholder="Pesquisar contato..." />
       </InputSearchContainer>
+
+      <Modal danger />
 
       <Container>
 
@@ -42,58 +45,15 @@ export default function Home() {
             </div>
 
             <div className="actions">
-              <a href="/">
+              <Link to="/edit">
                 <img src={edit} alt="Edit" />
-              </a>
+              </Link>
 
               <button type="button">
                 <img src={trash} alt="Remove" />
               </button>
             </div>
           </Card>
-          <Card>
-            <div className="info">
-              <div className="contact-name">
-                <strong>Pedro Leal</strong>
-                <small>instagram</small>
-              </div>
-
-              <span>pedro@mail.com</span>
-              <span>(83) 99999-9999</span>
-            </div>
-
-            <div className="actions">
-              <a href="/">
-                <img src={edit} alt="Edit" />
-              </a>
-
-              <button type="button">
-                <img src={trash} alt="Remove" />
-              </button>
-            </div>
-          </Card>
-          <Card>
-            <div className="info">
-              <div className="contact-name">
-                <strong>Pedro Leal</strong>
-                <small>instagram</small>
-              </div>
-
-              <span>pedro@mail.com</span>
-              <span>(83) 99999-9999</span>
-            </div>
-
-            <div className="actions">
-              <a href="/">
-                <img src={edit} alt="Edit" />
-              </a>
-
-              <button type="button">
-                <img src={trash} alt="Remove" />
-              </button>
-            </div>
-          </Card>
-
         </ListContainer>
       </Container>
     </>
