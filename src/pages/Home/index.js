@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 
+import { useEffect, useState } from 'react';
 import {
   InputSearchContainer, Container, Header, ListContainer, Card,
 } from './styles';
@@ -9,6 +10,27 @@ import arrow from '../../assets/images/icons/arrow.svg';
 import edit from '../../assets/images/icons/edit.svg';
 
 export default function Home() {
+  const [contacts, setContacts] = useState([]);
+  const [orderBy, setOrderBy] = useState('asc');
+
+  useEffect(() => {
+    fetch(`http://localhost:3001/contacts?orderBy=${orderBy}`)
+      .then(async (response) => {
+        const data = await response.json();
+        setContacts(data);
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log({ error });
+      });
+  }, [orderBy]);
+
+  function handleToggleOrderBy() {
+    setOrderBy((prevState) => (prevState === 'asc' ? 'desc' : 'asc'));
+  }
+
+  console.log(orderBy);
+
   return (
     <>
       <InputSearchContainer>
@@ -18,39 +40,41 @@ export default function Home() {
       <Container>
 
         <Header>
-          <strong>3 contatos</strong>
+          <strong>{contacts.length === 1 ? `${contacts.length} contato` : `${contacts.length} contatos`}</strong>
           <Link to="/new">Novo contato</Link>
         </Header>
 
-        <ListContainer>
+        <ListContainer orderBy={orderBy}>
           <header>
-            <button type="button">
+            <button type="button" onClick={handleToggleOrderBy}>
               <span>Nome</span>
               <img src={arrow} alt="arrow" />
             </button>
           </header>
 
-          <Card>
-            <div className="info">
-              <div className="contact-name">
-                <strong>Pedro Leal</strong>
-                <small>instagram</small>
+          {contacts.map((contact) => (
+            <Card key={contact.id}>
+              <div className="info">
+                <div className="contact-name">
+                  <strong>{contact.name}</strong>
+                  <small>{contact.category_name}</small>
+                </div>
+
+                <span>{contact.email}</span>
+                <span>{contact.phone}</span>
               </div>
 
-              <span>pedro@mail.com</span>
-              <span>(83) 99999-9999</span>
-            </div>
+              <div className="actions">
+                <Link to={`/edit/${contact.id}`}>
+                  <img src={edit} alt="Edit" />
+                </Link>
 
-            <div className="actions">
-              <Link to="/edit">
-                <img src={edit} alt="Edit" />
-              </Link>
-
-              <button type="button">
-                <img src={trash} alt="Remove" />
-              </button>
-            </div>
-          </Card>
+                <button type="button">
+                  <img src={trash} alt="Remove" />
+                </button>
+              </div>
+            </Card>
+          ))}
         </ListContainer>
       </Container>
     </>

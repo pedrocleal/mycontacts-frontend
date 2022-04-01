@@ -19,7 +19,11 @@ export default function ContactForm({ btnLabel }) {
   const [phone, setPhone] = useState('');
   const [category, setCategory] = useState('');
 
-  const { setError, removeError, getErrorMessageByFieldName } = useErrors();
+  const {
+    errors, setError, removeError, getErrorMessageByFieldName,
+  } = useErrors();
+
+  const isButtonValid = errors.length === 0 && name;
 
   function handleNameChange(event) {
     setName(event.target.value);
@@ -47,9 +51,9 @@ export default function ContactForm({ btnLabel }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log({
-      name, email, phone, category,
-    });
+    // console.log({
+    //   name, email, phone, category,
+    // });
   }
 
   return (
@@ -93,7 +97,7 @@ export default function ContactForm({ btnLabel }) {
         </Select>
       </FormGroup>
       <ButtonContainer>
-        <Button type="submit">{btnLabel}</Button>
+        <Button type="submit" disabled={!isButtonValid}>{btnLabel}</Button>
       </ButtonContainer>
     </Form>
   );
