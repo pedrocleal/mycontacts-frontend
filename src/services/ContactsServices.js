@@ -1,14 +1,24 @@
 // Service layer = padrão usado para separar as responsabilidades das entidades e melhorar o código
 
-import delay from '../utils/delay';
+import HttpClient from './utils/HttpClient';
 
 class ContactsServices {
-  async listContacts(orderBy = 'asc') {
-    const response = await fetch(`http://localhost:3001/contacts?orderBy=${orderBy}`); // Fetch data
-
-    await delay(500);
-    return response.json(); // Parse data
+  // Criando uma instância do HttpClient
+  constructor() {
+    this.HttpClient = new HttpClient('http://localhost:3001');
   }
+
+  async listContacts(orderBy = 'asc') {
+    return this.HttpClient.get(`/contacts?orderBy=${orderBy}`);
+  }
+
+  async createContact(contact) {
+    return this.HttpClient.post('/contacts', contact);
+  }
+
+  // async show(contactId) {
+  //   return this.HttpClient.get(`/contacts/${contactId}`);
+  // }
 }
 
 export default new ContactsServices();
