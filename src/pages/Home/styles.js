@@ -126,7 +126,6 @@ export const Card = styled.div`
     margin-top: 16px;
   }
 `;
-
 export const ErrorContainer = styled.div`
   margin-top: 16px;
   display: flex;
@@ -160,5 +159,23 @@ export const EmptyListContainer = styled.div`
     strong {
       color: ${({ theme }) => theme.colors.primary.main};
     }
+  }
+`;
+
+export const SearchNotFoundContainer = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 500px;
+  
+  margin-top: 16px;
+
+  p {
+    margin-left: 24px;
+    color: ${({ theme }) => theme.colors.gray[200]};
+
+    /* Regra para impedir que a palavra extrapole a largura do container */
+    word-break: break-word;
   }
 `;
