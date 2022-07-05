@@ -14,7 +14,7 @@ import formatPhone from '../../utils/formatPhone';
 import isEmailValid from '../../utils/ValidateEmail';
 import useErrors from '../../hooks/useErrors';
 
-export default function ContactForm({ btnLabel }) {
+export default function ContactForm({ onSubmit, btnLabel }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -67,7 +67,7 @@ export default function ContactForm({ btnLabel }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log({
+    onSubmit({
       name, email, phone, categoryId,
     });
   }
@@ -124,5 +124,6 @@ export default function ContactForm({ btnLabel }) {
 }
 
 ContactForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
   btnLabel: PropTypes.string.isRequired,
 };

@@ -15,10 +15,6 @@ class ContactsServices {
   async createContact(contact) {
     return this.HttpClient.post('/contacts', contact);
   }
-
-  // async show(contactId) {
-  //   return this.HttpClient.get(`/contacts/${contactId}`);
-  // }
 }
 
 export default new ContactsServices();
