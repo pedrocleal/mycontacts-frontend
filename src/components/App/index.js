@@ -7,7 +7,6 @@ import { Container } from './styles';
 
 import Header from '../Header';
 import Routes from '../../Routes';
-
 function App() {
   return (
     <BrowserRouter>
