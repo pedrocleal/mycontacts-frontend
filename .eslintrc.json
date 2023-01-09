@@ -5,13 +5,11 @@
     },
     "extends": [
         "plugin:react/recommended",
-        "plugin:react-hooks/recommended",
         "airbnb"
     ],
+    "overrides": [
+    ],
     "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
         "ecmaVersion": "latest",
         "sourceType": "module"
     },

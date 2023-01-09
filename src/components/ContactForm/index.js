@@ -14,7 +14,7 @@ import formatPhone from '../../utils/formatPhone';
 import isEmailValid from '../../utils/ValidateEmail';
 import useErrors from '../../hooks/useErrors';
 
-export default function ContactForm({ onSubmit, btnLabel }) {
+export default function ContactForm({ onSubmit, btnLabel, contactData }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -28,6 +28,15 @@ export default function ContactForm({ onSubmit, btnLabel }) {
 
   const isButtonValid = errors.length === 0 && name;
 
+  const preloadUserData = () => {
+    if (contactData) {
+      setName(contactData.name);
+      setEmail(contactData.email);
+      setPhone(contactData.phone);
+      setCategoryId(contactData.categoryId);
+    }
+  };
+
   useEffect(() => {
     async function loadCategories() {
       try {
@@ -38,8 +47,9 @@ export default function ContactForm({ onSubmit, btnLabel }) {
       }
     }
 
+    preloadUserData();
     loadCategories();
-  }, []);
+  }, [preloadUserData]);
 
   function handleNameChange(event) {
     setName(event.target.value);
@@ -74,7 +84,7 @@ export default function ContactForm({ onSubmit, btnLabel }) {
 
   return (
     <Form onSubmit={handleSubmit} noValidate>
-      <FormGroup error={getErrorMessageByFieldName('name')}>
+      <FormGroup error={getErrorMessageByFieldName('name')} isLoading={isLoadingCategories}>
         <Input
           error={getErrorMessageByFieldName('name')}
           placeholder="Nome"
@@ -83,7 +93,7 @@ export default function ContactForm({ onSubmit, btnLabel }) {
           required
         />
       </FormGroup>
-      <FormGroup error={getErrorMessageByFieldName('email')}>
+      <FormGroup error={getErrorMessageByFieldName('email')} isLoading={isLoadingCategories}>
         <Input
           type="email"
           error={getErrorMessageByFieldName('email')}
@@ -92,7 +102,7 @@ export default function ContactForm({ onSubmit, btnLabel }) {
           onChange={handleEmailChange}
         />
       </FormGroup>
-      <FormGroup>
+      <FormGroup isLoading={isLoadingCategories}>
         <Input
           type="tel"
           placeholder="Telefone"
@@ -126,4 +136,19 @@ export default function ContactForm({ onSubmit, btnLabel }) {
 ContactForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   btnLabel: PropTypes.string.isRequired,
+  contactData: PropTypes.shape({
+    name: PropTypes.string,
+    email: PropTypes.string,
+    phone: PropTypes.string,
+    categoryId: PropTypes.string,
+  }),
+};
+
+ContactForm.defaultProps = {
+  contactData: {
+    name: '',
+    email: '',
+    phone: '',
+    categoryId: '',
+  },
 };

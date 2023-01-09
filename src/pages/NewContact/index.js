@@ -12,8 +12,8 @@ export default function NewContact() {
         phone: formData.phone,
         category_id: formData.categoryId,
       };
-      const response = await ContactsService.createContact(contact);
-      console.log(response);
+      await ContactsService.createContact(contact);
+      alert('Contato cadastrado com sucesso!');
     } catch (error) {
       alert(error);
     }
