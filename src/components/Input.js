@@ -20,4 +20,9 @@ export default styled.input`
     color: #FC5050;
     border-color: #FC5050 !important;
   `}
+
+  &[disabled] {
+    background-color: ${({ theme }) => theme.colors.gray[100]};
+    border-color: ${({ theme }) => theme.colors.gray[200]};
+  }
 `;

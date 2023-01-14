@@ -25,10 +25,8 @@ export default function EditContact() {
       await ContactsService.updateContact(id, contact);
 
       // TODO: fix update contact
-
-      alert('Contato atualizado com sucesso!');
     } catch (error) {
-      alert(error);
+      console.log(error);
     }
   }
 
@@ -42,7 +40,7 @@ export default function EditContact() {
 
       <ContactForm
         btnLabel="Atualizar dados"
-        handleSubmit={handleSubmit}
+        onSubmit={handleSubmit}
         contactData={preloadedContact}
       />
     </>

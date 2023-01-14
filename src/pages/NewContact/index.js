@@ -12,10 +12,10 @@ export default function NewContact() {
         phone: formData.phone,
         category_id: formData.categoryId,
       };
-      await ContactsService.createContact(contact);
-      alert('Contato cadastrado com sucesso!');
+      const response = await ContactsService.createContact(contact);
+      console.log({ response });
     } catch (error) {
-      alert(error);
+      console.log({ error });
     }
   }
 

@@ -95,9 +95,9 @@ export default function Home() {
         >
           {(!hasError && contacts.length > 0) && (
             <strong>
-                {filteredContacts.length === 1
-                  ? `${filteredContacts.length} contato`
-                  : `${filteredContacts.length} contatos`}
+              {filteredContacts.length === 1
+                ? `${filteredContacts.length} contato`
+                : `${filteredContacts.length} contatos`}
             </strong>
           )}
           <Link to="/new">Novo contato</Link>

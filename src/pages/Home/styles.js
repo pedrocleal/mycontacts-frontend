@@ -53,7 +53,7 @@ export const Header = styled.header`
 `;
 
 export const ListContainer = styled.div`
-  margin-top: 24px;
+  margin: 24px 0;
 
   header {
     margin-bottom: 8px;
