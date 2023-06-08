@@ -13,6 +13,7 @@ export default function NewContact() {
         phone: formData.phone,
         category_id: formData.categoryId,
       };
+
       await ContactsService.createContact(contact);
 
       toast({

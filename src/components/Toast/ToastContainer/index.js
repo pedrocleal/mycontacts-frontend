@@ -12,10 +12,10 @@ export default function ToastContainer() {
       setMessages((prevState) => [...prevState, toast]);
     }
 
-    window.addEventListener('addtoast', handleAddToast);
+    document.addEventListener('addtoast', handleAddToast);
 
     return () => {
-      window.removeEventListener('addtoast', handleAddToast);
+      document.removeEventListener('addtoast', handleAddToast);
     };
   }, []);
 
